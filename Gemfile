@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Do something smarter here
+`/opt/jruby/lib/ruby/maven-home/bin/mvn dependency:go-offline` unless File.exists?('/root/.m2/repository/org/hibernate/hibernate-core/4.3.10.Final/hibernate-core-4.3.10.Final.jar')
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
