@@ -1,3 +1,5 @@
 First run, do 'bundle install'
 
 then 'jbundle install'
+
+For some reason, if Jarfile.lock is present, jbundle will not download the Maven dependencies.
