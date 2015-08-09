@@ -14,6 +14,7 @@ JBUNDLER_CLASSPATH << (JBUNDLER_LOCAL_REPO + '/org/jboss/logging/jboss-logging/3
 JBUNDLER_CLASSPATH << (JBUNDLER_LOCAL_REPO + '/antlr/antlr/2.7.7/antlr-2.7.7.jar')
 JBUNDLER_CLASSPATH << (JBUNDLER_LOCAL_REPO + '/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar')
 JBUNDLER_CLASSPATH << (JBUNDLER_LOCAL_REPO + '/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar')
+JBUNDLER_CLASSPATH << (JBUNDLER_LOCAL_REPO + '/hsqldb/hsqldb/1.8.0.10/hsqldb-1.8.0.10.jar')
 JBUNDLER_CLASSPATH << (JBUNDLER_LOCAL_REPO + '/org/hibernate/hibernate-core/4.3.10.Final/hibernate-core-4.3.10.Final.jar')
 JBUNDLER_CLASSPATH << (JBUNDLER_LOCAL_REPO + '/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar')
 JBUNDLER_CLASSPATH.freeze
