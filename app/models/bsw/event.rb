@@ -12,30 +12,6 @@ require 'jruby/core_ext'
     java_field 'java.lang.String title'
     java_field 'java.util.Date date'
 
-    def getId
-      @id
-    end
-
-    def setId(id)
-      @id = id
-    end
-
-    def getTitle
-      @title
-    end
-
-    def setTitle(title)
-      @title = title
-    end
-
-    def getDate
-      @date
-    end
-
-    def setDate(date)
-      @date = date
-    end
-
     become_java!
   end
 #end

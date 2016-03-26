@@ -5,10 +5,10 @@
 
 <hibernate-mapping package="bsw">
 	<class name="Event" table="EVENTS">
-      <id name="id" column="EVENT_ID">
+      <id name="id" column="EVENT_ID" access="field">
           <generator class="native"/>
       </id>
-      <property name="date" type="timestamp" column="EVENT_DATE"/>
-      <property name="title"/>
+      <property name="date" type="timestamp" column="EVENT_DATE" access="field"/>
+      <property name="title" access="field"/>
   </class>
 </hibernate-mapping>
