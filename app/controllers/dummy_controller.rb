@@ -10,6 +10,8 @@ class RubyHibernateModelCl < java.lang.ClassLoader
         super()
     end
 
+    # TODO: Would need to unload this somehow for hot model reloads
+
     overrides
     def findClass(class_name)
         puts "findClass request for #{class_name}"
@@ -25,15 +27,9 @@ class RubyHibernateModelCl < java.lang.ClassLoader
                 super
             end
         else
-            puts 'passing through'
-            super
+            puts 'raising exception to get hibernate to try its other classloaders'
+            raise java.lang.ClassNotFoundException.new("#{class_name} is not a model class, so expecting other loader to find it")
         end
-    end
-
-    overrides
-    def loadClass(class_name)
-        puts "got load request for #{class_name}"
-        super
     end
 end
 
@@ -63,6 +59,7 @@ class DummyController < ApplicationController
             MetadataSources.new(registry).buildMetadata.buildSessionFactory
         rescue
             StandardServiceRegistryBuilder.destroy registry
+            raise
         end
     end
   end
