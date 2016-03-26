@@ -37,7 +37,6 @@ class DummyController < ApplicationController
     event_klass.entityName = entity_name
     event_klass.jpaEntityName = entity_name
     model_klass = model_klass.become_java!
-    raise "model klass name is #{model_klass.getClass().name}"
     event_klass.className = model_klass
     event_klass.proxyInterfaceName = model_klass
     # TODO: Configurable?
@@ -63,7 +62,7 @@ class DummyController < ApplicationController
   end
 
   def perform_mappings(mappings)
-    table = mappings.addTable '', nil, 'EVENTS', nil, false
+    table = mappings.addTable '',nil, 'EVENTS', null, false
     id_col = add_col 'id', mappings, table
     title_col = add_col 'title', mappings, table
     date_col = add_col 'date', mappings, table
