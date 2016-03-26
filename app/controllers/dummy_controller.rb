@@ -16,7 +16,6 @@ class DummyController < ApplicationController
   end
 
   def get_session_factory
-
     @@session_factory ||= begin
         # Don't want to conflict with activesupport
         config = org.hibernate.cfg.Configuration.new
