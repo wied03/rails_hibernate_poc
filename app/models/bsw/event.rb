@@ -1,9 +1,6 @@
 require 'jruby/core_ext'
 
-#module Bsw
-
-  java_package 'bsw'
-
+module Bsw
   class Event
     attr_accessor :id
     attr_accessor :title
@@ -11,7 +8,5 @@ require 'jruby/core_ext'
     java_field 'java.lang.Long id'
     java_field 'java.lang.String title'
     java_field 'java.util.Date date'
-
-    become_java!
   end
-#end
+end
