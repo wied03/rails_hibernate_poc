@@ -1,6 +1,6 @@
 import 'org.hibernate.SessionFactory'
 import 'org.hibernate.boot.registry.StandardServiceRegistryBuilder'
-import 'org.hibernate.cfg.Configuration'
+import 'org.hibernate.boot.MetadataSources'
 
 class DummyController < ApplicationController
   def index
@@ -17,11 +17,14 @@ class DummyController < ApplicationController
 
   def get_session_factory
     @@session_factory ||= begin
-        # Don't want to conflict with activesupport
-        config = org.hibernate.cfg.Configuration.new
-        config.configure '/config/hibernate.cfg.xml'
-        registry = StandardServiceRegistryBuilder.new.applySettings(config.properties).build
-        config.buildSessionFactory(registry)
+        registry = StandardServiceRegistryBuilder.new.configure('/config/hibernate.cfg.xml').build
+        begin
+            sf = MetadataSources.new(registry).buildMetadata.buildSessionFactory
+            puts "built session factory #{sf}"
+            sf
+        ensure
+            StandardServiceRegistryBuilder.destroy registry
+        end
     end
   end
 end
