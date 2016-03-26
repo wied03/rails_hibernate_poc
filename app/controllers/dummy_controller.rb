@@ -1,5 +1,21 @@
 import 'org.hibernate.boot.registry.StandardServiceRegistryBuilder'
+import 'org.hibernate.boot.registry.BootstrapServiceRegistryBuilder'
 import 'org.hibernate.boot.MetadataSources'
+require 'overrides/for_all'
+
+class RubyHibernateModelCl < java.lang.ClassLoader
+    overrides
+    def findClass(class_name)
+        puts "got request for #{class_name}"
+        super
+    end
+
+    overrides
+    def loadClass(class_name)
+        puts "got load request for #{class_name}"
+        super
+    end
+end
 
 class DummyController < ApplicationController
   def index
@@ -16,7 +32,13 @@ class DummyController < ApplicationController
 
   def session_factory
     @@session_factory ||= begin
-        registry = StandardServiceRegistryBuilder.new.configure('/config/hibernate.cfg.xml').build
+        bootstrap = BootstrapServiceRegistryBuilder.new
+        .applyClassLoader(RubyHibernateModelCl.new)
+        .build
+        puts "bootstrap builder is #{bootstrap}"
+        registry = StandardServiceRegistryBuilder.new(bootstrap)
+        .configure('/config/hibernate.cfg.xml')
+        .build
         begin
             MetadataSources.new(registry).buildMetadata.buildSessionFactory
         rescue
