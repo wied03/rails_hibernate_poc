@@ -20,9 +20,8 @@ class DummyController < ApplicationController
     @@session_factory ||= begin
         # Don't want to conflict with activesupport
         config = org.hibernate.cfg.Configuration.new
-        config = config.configure '/config/hibernate.cfg.xml'
-        registry = StandardServiceRegistryBuilder.new.build
-        puts "hibernate registry is #{registry}"
+        config.configure '/config/hibernate.cfg.xml'
+        registry = StandardServiceRegistryBuilder.new.applySettings(config.properties).build
         config.buildSessionFactory(registry)
     end
   end
