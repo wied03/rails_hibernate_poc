@@ -4,10 +4,30 @@ import 'org.hibernate.boot.MetadataSources'
 require 'overrides/for_all'
 
 class RubyHibernateModelCl < java.lang.ClassLoader
+    def initialize(*model_classes)
+        @class_mapping = Hash[model_classes.map{|klass| [klass.name.gsub('::', '.'), klass.become_java!]}]
+        puts "setup class mapping as #{@class_mapping}"
+        super()
+    end
+
     overrides
     def findClass(class_name)
-        puts "got request for #{class_name}"
-        super
+        puts "findClass request for #{class_name}"
+        if @class_mapping.include? class_name
+            puts 'subbing in model from ruby side'
+            begin
+                klass = @class_mapping[class_name]
+                puts "klass is #{klass}"
+                puts "klass fields are #{klass.declared_fields.map(&:name)}"
+                klass
+            rescue Exception => e
+                puts "Unable, #{e}"
+                super
+            end
+        else
+            puts 'passing through'
+            super
+        end
     end
 
     overrides
@@ -33,7 +53,7 @@ class DummyController < ApplicationController
   def session_factory
     @@session_factory ||= begin
         bootstrap = BootstrapServiceRegistryBuilder.new
-        .applyClassLoader(RubyHibernateModelCl.new)
+        .applyClassLoader(RubyHibernateModelCl.new(Bsw::Event))
         .build
         puts "bootstrap builder is #{bootstrap}"
         registry = StandardServiceRegistryBuilder.new(bootstrap)
