@@ -1,28 +1,25 @@
-import 'org.hibernate.SessionFactory'
 import 'org.hibernate.boot.registry.StandardServiceRegistryBuilder'
 import 'org.hibernate.boot.MetadataSources'
 
 class DummyController < ApplicationController
   def index
-    sf = get_session_factory
-    session = sf.openSession
+    session = session_factory.openSession
     begin
-        session.beginTransaction
+        tran = session.beginTransaction
         result = session.createQuery( "from Event" ).list()
         puts "got result #{result}"
+        tran.commit
     ensure
         session.close
     end
   end
 
-  def get_session_factory
+  def session_factory
     @@session_factory ||= begin
         registry = StandardServiceRegistryBuilder.new.configure('/config/hibernate.cfg.xml').build
         begin
-            sf = MetadataSources.new(registry).buildMetadata.buildSessionFactory
-            puts "built session factory #{sf}"
-            sf
-        ensure
+            MetadataSources.new(registry).buildMetadata.buildSessionFactory
+        rescue
             StandardServiceRegistryBuilder.destroy registry
         end
     end
