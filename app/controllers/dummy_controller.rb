@@ -39,7 +39,7 @@ class DummyController < ApplicationController
         result.each do |ev|
             puts "event is #{ev.title}"
         end
-        event = Bsw::Event.new('the event', java.util.Date.new(Time.now.to_i*1000))
+        event = Bsw::Event.new('the event yes', java.util.Date.new(Time.now.to_i*1000))
         session.save event
         tran.commit
     ensure
@@ -55,32 +55,32 @@ class DummyController < ApplicationController
         Bsw::Event.class_eval do
             private
 
-            java_signature 'java.lang.Long getId()'
+            java_signature 'private java.lang.Long getId()'
             def getId
                 @id
             end
 
-            java_signature 'void setId(java.lang.Long)'
+            java_signature 'private void setId(java.lang.Long)'
             def setId(id)
                 @id = id
             end
 
-            java_signature 'java.lang.String getTitle()'
+            java_signature 'private java.lang.String getTitle()'
             def getTitle
                 @title
             end
 
-            java_signature 'void setTitle(java.lang.String)'
+            java_signature 'private void setTitle(java.lang.String)'
             def setTitle(title)
                 @title = title
             end
 
-            java_signature 'java.util.Date getDate()'
+            java_signature 'private java.util.Date getDate()'
             def getDate
                 @date
             end
 
-            java_signature 'void setDate(java.util.Date)'
+            java_signature 'private void setDate(java.util.Date)'
             def setDate(date)
                 @date = date
             end
