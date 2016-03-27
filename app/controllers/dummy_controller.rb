@@ -89,8 +89,7 @@ class DummyController < ApplicationController
         .build
         puts "bootstrap builder is #{bootstrap}"
 
-        class_svc = bootstrap.getService(org.hibernate.boot.registry.classloading.spi.ClassLoaderService)
-
+        #class_svc = bootstrap.getService(org.hibernate.boot.registry.classloading.spi.ClassLoaderService)
         # TODO: once we get our own loader working with forName, then look at the aggregate loader
         #puts "class svc is #{class_svc}, fetching model"
         #method = class_svc.getClass.getDeclaredMethod('getAggregatedClassLoader')
