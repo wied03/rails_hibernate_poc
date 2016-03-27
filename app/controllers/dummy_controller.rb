@@ -36,6 +36,13 @@ class DummyController < ApplicationController
         tran = session.beginTransaction
         result = session.createQuery( "from Event" ).list()
         puts "got result #{result}"
+        result.each do |ev|
+            puts "event is #{ev.title}"
+        end
+        event = Bsw::Event.new
+        event.title = 'the event'
+        event.date = java.util.Date.new(Time.now.to_i*1000)
+        session.save event
         tran.commit
     ensure
         session.close
