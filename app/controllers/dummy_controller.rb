@@ -34,7 +34,7 @@ class DummyController < ApplicationController
     session = session_factory.openSession
     begin
         tran = session.beginTransaction
-        result = session.createQuery( "from Event" ).list()
+        result = session.createQuery("from Event").list()
         puts "got result #{result}"
         result.each do |ev|
             puts "event is #{ev.title}"

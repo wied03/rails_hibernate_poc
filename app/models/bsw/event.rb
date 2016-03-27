@@ -2,8 +2,7 @@ require 'jruby/core_ext'
 
 module Bsw
   class Event
-    attr_reader :id, :title, :date
-
+    # TODO: Hibernate only finds the attributes if they are set from outside the class (not as ruby @fields)
     def initialize(title, date)
         @title = title
         @date = date
