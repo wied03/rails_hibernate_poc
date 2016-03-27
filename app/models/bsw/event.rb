@@ -2,9 +2,12 @@ require 'jruby/core_ext'
 
 module Bsw
   class Event
-    attr_accessor :id
-    attr_accessor :title
-    attr_accessor :date
+    attr_reader :id, :title, :date
+
+    def initialize(title, date)
+        @title = title
+        @date = date
+    end
 
     # TODO: Move these out
 

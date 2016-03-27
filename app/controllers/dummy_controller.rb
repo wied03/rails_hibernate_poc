@@ -39,9 +39,7 @@ class DummyController < ApplicationController
         result.each do |ev|
             puts "event is #{ev.title}"
         end
-        event = Bsw::Event.new
-        event.title = 'the event'
-        event.date = java.util.Date.new(Time.now.to_i*1000)
+        event = Bsw::Event.new('the event', java.util.Date.new(Time.now.to_i*1000))
         session.save event
         tran.commit
     ensure
