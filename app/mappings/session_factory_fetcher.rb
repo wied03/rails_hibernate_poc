@@ -13,8 +13,13 @@ class SessionFactoryFetcher
             }
             # TODO: Find models automatically
             ModelAnnotator.annotate(Bsw::Event, fields)
+            fields = {
+                id: 'java.lang.Long',
+                greeting: 'java.lang.String',
+            }
+            ModelAnnotator.annotate(Bsw::Foo, fields)
 
-            our_loader = ModelClassLoader.new(Bsw::Event)
+            our_loader = ModelClassLoader.new(Bsw::Event, Bsw::Foo)
             bootstrap = BootstrapServiceRegistryBuilder.new
             .applyClassLoader(our_loader)
             .build

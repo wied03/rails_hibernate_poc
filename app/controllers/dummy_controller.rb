@@ -4,6 +4,10 @@ class DummyController < ApplicationController
     begin
         tran = session.beginTransaction
         result = session.createQuery("from Event").list()
+        foos = session.createQuery("from Foo").list()
+        puts "foo results #{foos}"
+        foo = Bsw::Foo.new 'batman'
+        session.save foo
         puts "got result #{result}"
         result.each do |ev|
             puts "event is #{ev.desc}"
