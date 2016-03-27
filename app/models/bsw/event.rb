@@ -1,8 +1,6 @@
 require 'jruby/core_ext'
 
 module Bsw
-
-    java_package 'bsw'
   class Event
     attr_accessor :id
     attr_accessor :title
