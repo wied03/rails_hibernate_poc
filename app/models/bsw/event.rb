@@ -1,9 +1,9 @@
 module Bsw
   class Event
-    attr_reader :id, :title, :date
+    attr_reader :id, :desc, :date
 
-    def initialize(title, date)
-        @title = title
+    def initialize(desc, date)
+        @desc = "#{desc} no way"
         @date = date
     end
   end

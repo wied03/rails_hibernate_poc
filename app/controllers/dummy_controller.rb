@@ -38,7 +38,7 @@ class DummyController < ApplicationController
         result = session.createQuery("from Event").list()
         puts "got result #{result}"
         result.each do |ev|
-            puts "event is #{ev.title}"
+            puts "event is #{ev.desc}"
         end
         event = Bsw::Event.new('the event yes', java.util.Date.new(Time.now.to_i*1000))
         session.save event
@@ -67,14 +67,14 @@ class DummyController < ApplicationController
                 @id = id
             end
 
-            java_signature 'private java.lang.String getTitle()'
-            def getTitle
-                @title
+            java_signature 'private java.lang.String getDesc()'
+            def getDesc
+                @desc
             end
 
-            java_signature 'private void setTitle(java.lang.String)'
-            def setTitle(title)
-                @title = title
+            java_signature 'private void setDesc(java.lang.String)'
+            def setDesc(title)
+                @desc = title
             end
 
             java_signature 'private java.util.Date getDate()'

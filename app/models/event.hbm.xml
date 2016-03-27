@@ -9,6 +9,6 @@
           <generator class="native"/>
       </id>
       <property name="date" type="timestamp" column="EVENT_DATE"/>
-      <property name="title"/>
+      <property name="desc" column="title"/>
   </class>
 </hibernate-mapping>
