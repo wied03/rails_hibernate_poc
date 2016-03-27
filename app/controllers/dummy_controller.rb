@@ -12,7 +12,7 @@ class DummyController < ApplicationController
             end
         end
         event = Bsw::Event.new('the event yes')
-        event.greetings.add Bsw::Foo.new('doody')
+        event.greetings << Bsw::Foo.new('doody')
         session.save event
         tran.commit
     ensure
