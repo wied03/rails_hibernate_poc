@@ -5,10 +5,16 @@
 
 <hibernate-mapping package="rubyobj.Bsw">
 	<class name="Event" table="EVENTS">
-      <id name="id" column="EVENT_ID">
+      <id name="id">
           <generator class="native"/>
       </id>
-      <property name="date" type="timestamp" column="EVENT_DATE"/>
+
       <property name="desc" column="title"/>
+
+      <set name="greetings" table="Foobar" inverse="true" lazy="true">
+        <key column="event_id"/>
+        <one-to-many class="rubyobj.Bsw.Foo"/>
+      </set>
+
   </class>
 </hibernate-mapping>

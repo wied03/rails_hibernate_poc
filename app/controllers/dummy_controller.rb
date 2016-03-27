@@ -4,15 +4,15 @@ class DummyController < ApplicationController
     begin
         tran = session.beginTransaction
         result = session.createQuery("from Event").list()
-        foos = session.createQuery("from Foo").list()
-        puts "foo results #{foos}"
-        foo = Bsw::Foo.new 'batman'
-        session.save foo
         puts "got result #{result}"
         result.each do |ev|
-            puts "event is #{ev.desc}"
+            puts "result desc #{ev.desc}"
+            ev.greetings.each do |grt|
+                puts "greeting #{grt.greeting}"
+            end
         end
-        event = Bsw::Event.new('the event yes', java.util.Date.new(Time.now.to_i*1000))
+        event = Bsw::Event.new('the event yes')
+        event.greetings.add Bsw::Foo.new('doody')
         session.save event
         tran.commit
     ensure

@@ -5,9 +5,12 @@
 
 <hibernate-mapping package="rubyobj.Bsw">
     <class name="Foo" table="Foobar">
-      <id name="id" column="EVENT_ID">
+      <id name="id">
           <generator class="native"/>
       </id>
       <property name="greeting"/>
+      <many-to-one name="event" class="rubyobj.Bsw.Event">
+        <column name="event_id" />
+      </many-to-one>
   </class>
 </hibernate-mapping>
