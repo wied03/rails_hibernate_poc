@@ -49,6 +49,42 @@ class DummyController < ApplicationController
 
   def session_factory
     @@session_factory ||= begin
+        # TODO: Would probably need some Fluent mapping code anyways that runs on startup
+        # it could generate the XML and then, based on mapped attributes,
+        # monkey patch all of these classes
+        Bsw::Event.class_eval do
+            private
+
+            java_signature 'java.lang.Long getId()'
+            def getId
+                @id
+            end
+
+            java_signature 'void setId(java.lang.Long)'
+            def setId(id)
+                @id = id
+            end
+
+            java_signature 'java.lang.String getTitle()'
+            def getTitle
+                @title
+            end
+
+            java_signature 'void setTitle(java.lang.String)'
+            def setTitle(title)
+                @title = title
+            end
+
+            java_signature 'java.util.Date getDate()'
+            def getDate
+                @date
+            end
+
+            java_signature 'void setDate(java.util.Date)'
+            def setDate(date)
+                @date = date
+            end
+        end
         our_loader = RubyHibernateModelCl.new(Bsw::Event)
         bootstrap = BootstrapServiceRegistryBuilder.new
         .applyClassLoader(our_loader)
