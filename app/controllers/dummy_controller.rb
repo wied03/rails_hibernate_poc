@@ -2,6 +2,7 @@ import 'org.hibernate.boot.registry.StandardServiceRegistryBuilder'
 import 'org.hibernate.boot.registry.BootstrapServiceRegistryBuilder'
 import 'org.hibernate.boot.MetadataSources'
 require 'overrides/for_all'
+require 'jruby/core_ext'
 
 class RubyHibernateModelCl < java.lang.ClassLoader
     def initialize(*model_classes)

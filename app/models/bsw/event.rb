@@ -1,6 +1,3 @@
-# TODO: THis can probably be migrated closer to the Hibernate code
-require 'jruby/core_ext'
-
 module Bsw
   class Event
     attr_reader :id, :title, :date
