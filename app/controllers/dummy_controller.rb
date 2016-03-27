@@ -55,6 +55,7 @@ class DummyController < ApplicationController
         Bsw::Event.class_eval do
             private
 
+            # private in ruby does not mean private w/ Java signature
             java_signature 'private java.lang.Long getId()'
             def getId
                 @id
