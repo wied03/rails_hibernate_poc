@@ -4,7 +4,7 @@ module Bsw
 
     def initialize(desc)
         @desc = "#{desc} no way"
-        @greetings = Set.new
+        @greetings = []
     end
   end
 end

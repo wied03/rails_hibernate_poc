@@ -3,13 +3,15 @@ require 'overrides/for_all'
 class LoggingInterceptor < org.hibernate.EmptyInterceptor
     overrides
     def onSave(entity, id, state, property_names, types)
-        puts "got call for entity #{entity} prop names #{property_names.to_a}"
+        puts "got call for entityy #{entity} prop names #{property_names.to_a}"
 
-        constructor = java.util.HashSet.java_class.constructor(java.util.Collection)
-        set = constructor.new_instance(java.util.Arrays.asList(state[1]))
-        puts "replacing with #{set}"
-        state[1] = set
-        true
+        #constructor = java.util.HashSet.java_class.constructor(java.util.Collection)
+        #set = constructor.new_instance(java.util.Arrays.asList(state[1]))
+        #puts "replacing with #{set}"
+        #puts "state is #{state[1]}"
+        #state[1] = java.util.ArrayList.new(state[1])
+        #true
+        false
 
         # modified = false
 

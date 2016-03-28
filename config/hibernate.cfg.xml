@@ -29,7 +29,6 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping resource="app/models/event.hbm.xml"/>
-        <mapping resource="app/models/foo.hbm.xml"/>
 
     </session-factory>
 

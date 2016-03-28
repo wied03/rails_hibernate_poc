@@ -9,7 +9,7 @@ class SessionFactoryFetcher
             fields = {
                 id: 'java.lang.Long',
                 desc: 'java.lang.String',
-                greetings: 'java.util.Set'
+                greetings: 'java.util.List'
             }
             # TODO: Find models automatically
             ModelAnnotator.annotate(Bsw::Event, fields)
