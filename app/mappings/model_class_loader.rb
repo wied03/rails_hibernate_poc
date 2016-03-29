@@ -16,10 +16,6 @@ class ModelClassLoader < java.lang.ClassLoader
 
     overrides
     def findClass(class_name)
-        if @class_mapping.include? class_name
-            @class_mapping[class_name]
-        else
-            self.parent.findClass(class_name)
-        end
+        @class_mapping[class_name] || self.parent.findClass(class_name)
     end
 end
