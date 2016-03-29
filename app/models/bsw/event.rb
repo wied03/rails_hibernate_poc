@@ -6,5 +6,9 @@ module Bsw
         @desc = "#{desc} no way"
         @greetings = []
     end
+
+    def other_way
+        @greetings
+    end
   end
 end

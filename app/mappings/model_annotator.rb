@@ -21,7 +21,7 @@ module ModelAnnotator
                 define_method(setter) { |value|
                     instance_variable_set(ivar, value)
                     if self.is_a? Bsw::Event
-                        puts "setter called for ivar #{ivar}, method result is #{self.greetings}"
+                        puts "setter called for ivar #{ivar}, method result is #{self.other_way}"
                     end
                 }
                 private setter
