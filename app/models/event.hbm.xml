@@ -11,7 +11,7 @@
 
       <property name="desc" column="title"/>
 
-      <bag name="greetings" inverse="true" cascade="save-update">
+      <bag name="greetings" cascade="save-update">
         <key column="event_id"/>
         <one-to-many class="rubyobj.Bsw.Foo"/>
       </bag>
@@ -22,6 +22,5 @@
           <generator class="native"/>
       </id>
       <property name="greeting"/>
-      <many-to-one name="event" class="rubyobj.Bsw.Event" column="event_id"/>
   </class>
 </hibernate-mapping>

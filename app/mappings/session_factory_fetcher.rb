@@ -15,8 +15,7 @@ class SessionFactoryFetcher
             ModelAnnotator.annotate(Bsw::Event, fields)
             fields = {
                 id: 'java.lang.Long',
-                greeting: 'java.lang.String',
-                event: 'java.lang.Object'
+                greeting: 'java.lang.String'
             }
             ModelAnnotator.annotate(Bsw::Foo, fields)
 

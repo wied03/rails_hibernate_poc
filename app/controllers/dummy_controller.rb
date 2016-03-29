@@ -13,8 +13,20 @@ class DummyController < ApplicationController
         end
         event = Bsw::Event.new('the event yes')
         event.greetings << Bsw::Foo.new('doody')
-        session.flush
         session.save event
+        tran.commit
+    ensure
+        session.close
+    end
+
+    session = SessionFactoryFetcher.session_factory.openSession
+    begin
+        tran = session.beginTransaction
+        item = session.load(Bsw::Event.java_class, 1)
+        puts "got item #{item}"
+        item.greetings.each do |greeting|
+            puts "foo is #{greeting}, #{greeting.greeting}"
+        end
         tran.commit
     ensure
         session.close

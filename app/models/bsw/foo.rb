@@ -1,6 +1,6 @@
 module Bsw
   class Foo
-    attr_reader :id, :greeting, :event
+    attr_reader :id, :greeting
 
     def initialize(greeting)
         @greeting = "greetings #{greeting}"
