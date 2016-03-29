@@ -1,3 +1,5 @@
+require 'jruby/core_ext'
+
 module ModelAnnotator
     def self.annotate(klass, fields)
         klass.class_eval do
@@ -20,5 +22,6 @@ module ModelAnnotator
                 private setter
             end
         end
+        klass.become_java!
     end
 end

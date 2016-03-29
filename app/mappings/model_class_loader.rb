@@ -1,10 +1,9 @@
 require 'overrides/for_all'
-require 'jruby/core_ext'
 
 class ModelClassLoader < java.lang.ClassLoader
     def initialize(*model_classes)
         @class_mapping = Hash[model_classes.map do |klass|
-            [ModelClassLoader.get_java_class_name(klass), klass.become_java!]
+            [ModelClassLoader.get_java_class_name(klass), klass.java_class]
         end]
         super()
     end
