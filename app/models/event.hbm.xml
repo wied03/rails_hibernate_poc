@@ -13,7 +13,7 @@
 
       <bag name="greetings" cascade="save-update">
         <key column="event_id"/>
-        <one-to-many class="rubyobj.Bsw.Foo"/>
+        <one-to-many class="Foo"/>
       </bag>
 
   </class>
