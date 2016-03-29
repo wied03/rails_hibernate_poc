@@ -5,13 +5,13 @@
 
 <hibernate-mapping package="rubyobj.Bsw" default-cascade="save-update">
 	<class name="Event" table="EVENTS">
-      <id name="id" column="event_id">
+      <id name="id">
           <generator class="native"/>
       </id>
 
       <property name="desc" column="title"/>
 
-      <bag name="greetings">
+      <bag name="greetings" inverse="true">
         <key column="event_id"/>
         <one-to-many class="Foo"/>
       </bag>
@@ -22,5 +22,8 @@
           <generator class="native"/>
       </id>
       <property name="greeting"/>
+      <many-to-one class="Event" name="event">
+        <column name="event_id" not-null="true"/>
+      </many-to-one>
   </class>
 </hibernate-mapping>

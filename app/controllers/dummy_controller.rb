@@ -11,7 +11,7 @@ class DummyController < ApplicationController
             end
         end
         event = Bsw::Event.new('the event yes')
-        event.greetings << Bsw::Foo.new('doody')
+        event.greetings << Bsw::Foo.new('doody', event)
         session.save event
         tran.commit
     ensure
@@ -23,8 +23,8 @@ class DummyController < ApplicationController
         tran = session.beginTransaction
         item = session.get(Bsw::Event.java_class, 1)
         puts "got item #{item.id}"
-        item.other_way.each do |greeting|
-            puts "foo is #{greeting}, #{greeting.greeting}"
+        item.other_way.each do |foo|
+            puts "foo is #{foo}, #{foo.greeting}, event is #{foo.event}, event id is #{foo.event.id}"
         end
         tran.commit
     ensure
