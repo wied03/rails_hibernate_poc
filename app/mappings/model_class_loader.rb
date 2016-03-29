@@ -19,7 +19,7 @@ class ModelClassLoader < java.lang.ClassLoader
         if @class_mapping.include? class_name
             @class_mapping[class_name]
         else
-            raise java.lang.ClassNotFoundException.new("#{class_name} is not a model class, so expecting other loader to find it")
+            self.parent.findClass(class_name)
         end
     end
 end
