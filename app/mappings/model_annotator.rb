@@ -18,12 +18,7 @@ module ModelAnnotator
                 setter = "set#{field}".to_sym
 
                 java_signature "private void #{setter}(#{type})"
-                define_method(setter) { |value|
-                    instance_variable_set(ivar, value)
-                    if self.is_a? Bsw::Event
-                        puts "setter called for ivar #{ivar}, method result is #{self.other_way}"
-                    end
-                }
+                define_method(setter) { |value| instance_variable_set(ivar, value) }
                 private setter
             end
         end

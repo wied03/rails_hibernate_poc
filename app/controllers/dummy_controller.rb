@@ -22,7 +22,7 @@ class DummyController < ApplicationController
     session = SessionFactoryFetcher.session_factory.openSession
     begin
         tran = session.beginTransaction
-        item = session.load(Bsw::Event.java_class, 1)
+        item = session.get(Bsw::Event.java_class, 1)
         puts "got item #{item.id}"
         item.other_way.each do |greeting|
             puts "foo is #{greeting}, #{greeting.greeting}"
