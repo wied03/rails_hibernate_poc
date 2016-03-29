@@ -23,7 +23,7 @@ class DummyController < ApplicationController
     begin
         tran = session.beginTransaction
         item = session.load(Bsw::Event.java_class, 1)
-        puts "got item #{item.inspect}"
+        puts "got item #{item.id}"
         item.other_way.each do |greeting|
             puts "foo is #{greeting}, #{greeting.greeting}"
         end
