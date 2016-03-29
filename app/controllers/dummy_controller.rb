@@ -21,11 +21,14 @@ class DummyController < ApplicationController
     session = SessionFactoryFetcher.session_factory.openSession
     begin
         tran = session.beginTransaction
-        item = session.get(Bsw::Event.java_class, 1)
-        puts "got item #{item.id}"
-        item.other_way.each do |foo|
-            puts "foo is #{foo}, #{foo.greeting}, event is #{foo.event}, event id is #{foo.event.id}"
-        end
+        # item = session.get(Bsw::Event.java_class, 1)
+        # puts "got item #{item.id}"
+        # item.other_way.each do |foo|
+        #     puts "foo is #{foo}, #{foo.greeting}, event is #{foo.event}, event id is #{foo.event.id}"
+        # end
+        event = session.load(Bsw::Event.java_class, 1)
+        foo = Bsw::Foo.new('with session load', event)
+        session.save foo
         tran.commit
     ensure
         session.close

@@ -4,7 +4,6 @@ module Bsw
 
     def initialize(greeting, event)
         @event = event
-        @event.greetings << self
         @greeting = "greetings #{greeting}"
     end
   end
